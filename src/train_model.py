@@ -62,7 +62,7 @@ preds = inference(model, X_test)
 logger.info("Scoring step")
 precision, recall, fbeta =  compute_model_metrics(y_test, preds)
 
-logger.info(f"precession: {precession}")
+logger.info(f"precision: {precision}")
 logger.info(f"recall: {recall}")
 logger.info(f"fbeta: {fbeta}")
 
@@ -72,5 +72,5 @@ joblib.dump(model, "../model/model.pkl")
 logger.info("Save one-hot encoder")
 joblib.dump(encoder, "../model/encoder.pkl")
 
-logger info("Save label encoder")
+logger.info("Save label encoder")
 joblib.dump(lb, "../model/lb.pkl")

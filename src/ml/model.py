@@ -24,7 +24,11 @@ def train_model(X_train, y_train):
     max_depth = [3, 4, 5]
     param_grid = {"n_estimators": n_estimators, "max_depth": max_depth}
     estimator = GradientBoostingClassifier()
-    search = GridSearchCV(estimator=estimator, param_grid=param_grid, cv=5, verbose=3)
+    search = GridSearchCV(estimator=estimator, 
+                          param_grid=param_grid,
+                          n_jobs = -1,
+                          cv=5, 
+                          verbose=3)
     search.fit(X_train, y_train)
     model = search.best_estimator_
     return model 
