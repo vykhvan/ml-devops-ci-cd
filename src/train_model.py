@@ -44,7 +44,7 @@ X_train, y_train, encoder, lb = process_data(
 # Proces the test data with the process_data function.
 logger.info("Data preprocessing step for test set")
 X_test, y_test, encoder, lb  = process_data(
-    train, 
+    test, 
     categorical_features=cat_features, 
     label="salary", 
     training=False, 
