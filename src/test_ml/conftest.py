@@ -23,7 +23,7 @@ def categorical_features():
     return cat_features
 
 @pytest.fixture(scope="session")
-def train_test_data(data, categorical_features):
+def processed_data(data, categorical_features):
 
     train, test = train_test_split(data, test_size=0.3)
 
@@ -40,4 +40,8 @@ def train_test_data(data, categorical_features):
             training=False,
             encoder=encoder,
             lb=lb)
-    return X_train, X_test, y_train, y_test
+    splitted_data = {"X_train": X_train,
+                     "X_test": X_test,
+                     "y_train": y_train,
+                     "y_test": y_test}
+    return splitted_data
