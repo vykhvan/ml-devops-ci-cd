@@ -10,17 +10,14 @@ from ml.data import process_data
 from ml.model import train_model
 from ml.model import compute_model_metrics
 from ml.model import inference
+from ml.model import compute_model_slice_metrics
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
 # Add code to load in the data.
 
-logger.info("Data ingestion step")
+print("Data ingestion step")
 data = pd.read_csv("../data/cleaned_data.csv")
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
-logger.info("Data segregation step")
-train, test = train_test_split(data, test_size=0.20)
 
 cat_features = [
     "workclass",
@@ -32,8 +29,10 @@ cat_features = [
     "sex",
     "native-country",
 ]
+print("Data segregation step")
+train, test = train_test_split(data, test_size=0.3)
 
-logger.info("Data preprocessing step for train set")
+print("Data preprocessing step for train set")
 X_train, y_train, encoder, lb = process_data(
     train, 
     categorical_features=cat_features, 
@@ -42,7 +41,7 @@ X_train, y_train, encoder, lb = process_data(
 )
 
 # Proces the test data with the process_data function.
-logger.info("Data preprocessing step for test set")
+print("Data preprocessing step for test set")
 X_test, y_test, encoder, lb  = process_data(
     test, 
     categorical_features=cat_features, 
@@ -53,24 +52,28 @@ X_test, y_test, encoder, lb  = process_data(
 )
 
 # Train and save a model.
-logger.info("Train model step")
+print("Train model step")
 model = train_model(X_train, y_train)
 
-logger.info("Inference step")
+print("Inference step")
 preds = inference(model, X_test)
 
-logger.info("Scoring step")
+print("Scoring step")
 precision, recall, fbeta =  compute_model_metrics(y_test, preds)
 
-logger.info(f"precision: {precision}")
-logger.info(f"recall: {recall}")
-logger.info(f"fbeta: {fbeta}")
+print(f"precision: {precision}")
+print(f"recall: {recall}")
+print(f"fbeta: {fbeta}")
 
-logger.info("Save model")
+print("Save model")
 joblib.dump(model, "../model/model.pkl")
 
-logger.info("Save one-hot encoder")
+print("Save one-hot encoder")
 joblib.dump(encoder, "../model/encoder.pkl")
 
-logger.info("Save label encoder")
+print("Save label encoder")
 joblib.dump(lb, "../model/lb.pkl")
+
+# Computing performance on model slices
+print("Compute model slice metrics")
+compute_model_slice_metrics(test, cat_features)
