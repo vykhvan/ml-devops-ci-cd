@@ -19,7 +19,7 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-    
+    """ 
     n_estimators = [100, 200, 300]
     max_depth = [3, 4, 5]
     param_grid = {"n_estimators": n_estimators, "max_depth": max_depth}
@@ -31,6 +31,10 @@ def train_model(X_train, y_train):
                           verbose=3)
     search.fit(X_train, y_train)
     model = search.best_estimator_
+    """
+    model = GradientBoostingClassifier(n_estimators=250, max_depth=4)
+    model.fit(X_train, y_train)
+
     return model 
 
 
