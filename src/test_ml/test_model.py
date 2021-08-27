@@ -71,7 +71,16 @@ def test_compute_model_slice_metrics(make_dataset):
     compute_model_slice_metrics(df, ["column3"], input_pth, output_pth)
     assert os.path.exists(output_pth + "/slice_output.txt")
     assert os.stat(output_pth + "/slice_output.txt").st_size > 0.0
+
+
+def test_clean_dummy_files():
+    input_pth = "src/test_ml"
+    output_pth = "src/test_ml"
     os.remove(input_pth + "/encoder.pkl")
     os.remove(input_pth + "/lb.pkl")
     os.remove(input_pth + "/model.pkl")
     os.remove(output_pth + "/slice_output.txt")
+    assert not os.path.exists(input_pth + "/encoder.pkl")
+    assert not os.path.exists(input_pth + "/lb.pkl")
+    assert not os.path.exists(input_pth + "/model.pkl")
+    assert not os.path.exists(output_pth + "/slice_output.txt")
