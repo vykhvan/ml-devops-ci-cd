@@ -24,8 +24,8 @@ def make_dataset():
                                      ["column3"],
                                      "salary",
                                      training=True)
-    joblib.dump(encoder, "encoder.pkl")
-    joblib.dump(lb, "lb.pkl")
+    joblib.dump(encoder, "src/test_ml/encoder.pkl")
+    joblib.dump(lb, "src/test_ml/lb.pkl")
     return X, y, df
 
 
@@ -40,14 +40,14 @@ def test_train_model(make_split):
     # testing train_model
     X_train, _, y_train, _ = make_split
     model = train_model(X_train, y_train)
-    joblib.dump(model, "model.pkl")
+    joblib.dump(model, "src/test_ml/model.pkl")
     assert isinstance(model, sklearn.ensemble._gb.GradientBoostingClassifier)
 
 
 def test_inference(make_split):
     # Testing inference
     _, X_test, _, _ = make_split
-    model = joblib.load("model.pkl")
+    model = joblib.load("src/test_ml/model.pkl")
     preds = inference(model, X_test)
     assert isinstance(preds, np.ndarray)
 
@@ -55,7 +55,7 @@ def test_inference(make_split):
 def test_compute_model_metrics(make_split):
     # Testing compute_model_metrics
     _, X_test, _, y_test = make_split
-    model = joblib.load("model.pkl")
+    model = joblib.load("src/test_ml/model.pkl")
     preds = inference(model, X_test)
     precision, recall, fbeta = compute_model_metrics(y_test, preds)
     assert isinstance(precision, float)
@@ -66,12 +66,12 @@ def test_compute_model_metrics(make_split):
 def test_compute_model_slice_metrics(make_dataset):
     # Testing compute_model_slice_metrics
     _, _, df = make_dataset
-    input_pth = "../test_ml/"
-    output_pth = "../test_ml/"
+    input_pth = "src/test_ml"
+    output_pth = "src/test_ml"
     compute_model_slice_metrics(df, ["column3"], input_pth, output_pth)
-    assert os.path.exists(output_pth + "slice_output.txt")
-    assert os.stat(output_pth + "slice_output.txt").st_size > 0.0
-    os.remove("encoder.pkl")
-    os.remove("lb.pkl")
-    os.remove("model.pkl")
-    os.remove("slice_output.txt")
+    assert os.path.exists(output_pth + "/slice_output.txt")
+    assert os.stat(output_pth + "/slice_output.txt").st_size > 0.0
+    os.remove(input_pth + "/encoder.pkl")
+    os.remove(input_pth + "/lb.pkl")
+    os.remove(input_pth + "/model.pkl")
+    os.remove(output_pth + "/slice_output.txt")
