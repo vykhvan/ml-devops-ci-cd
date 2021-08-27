@@ -11,21 +11,25 @@ income by social data information.
 * Itended for real-time inference
 
 ## Factors
-* Potential relevant factors include groups for gender, age, race.
+* Potential relevant factors include groups for gender and race.
 
 ## Metrics
-* Evaluation metrics include F-Beta, precision, recall
+* The model was evaluated using Fbeta, precision and recall.
 * Pinned metrics measures for categorical features in dataset
 
 ## Training Data
-* Data get from https://archive.ics.uci.edu/ml/datasets/census+income
+* The data was obtained from the UCI Machine Learning Repository
+* https://archive.ics.uci.edu/ml/datasets/census+income
 
 ## Evaluation Data
 * Train test split
+* Compute model slice performance
 
 ## Quantative Analysis
-<img src="https://github.com/vykhvan/ml-devops-ci-cd/blob/main/race.png" alt="drawing" width="500"/>
+<img src="https://github.com/vykhvan/ml-devops-ci-cd/blob/main/quantative-analysis.png" alt="drawing" width="800"/>
 
 ## Ethical Considerations
-
+* Amer-indian Eskimo
+ 
 ## Caveats and Recommendations
+* Low perfomance for Amer-indian Eskimo race. New more data for this group.
