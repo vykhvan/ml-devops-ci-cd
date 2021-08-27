@@ -4,7 +4,7 @@ from src.ml.data import process_data
 
 
 def test_process_data(data, categorical_features):
-    """Test process_data"""
+    """Testing process_data"""
     X, y, encoder, lb = process_data(
         data,
         categorical_features=categorical_features,

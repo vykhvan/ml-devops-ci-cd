@@ -3,7 +3,7 @@ from sklearn.metrics import (fbeta_score,
 from sklearn.ensemble import GradientBoostingClassifier
 import joblib
 import csv
-from ml.data import process_data
+from src.ml.data import process_data
 
 # Optional: implement hyperparameter tuning.
 
@@ -52,13 +52,27 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
-def compute_model_slice_metrics(df, cat_features):
-    encoder = joblib.load("../model/encoder.pkl")
-    lb = joblib.load("../model/lb.pkl")
-    model = joblib.load("../model/model.pkl")
+def compute_model_slice_metrics(df, cat_features, input_pth, output_pth):
+    """
+    Validates the trained machine learning mogdel
+    with slice metrics and write in text file.
+
+    Inputs
+    ------
+    df : pandas.core.frame.DataFrame
+         Test data for computes model slice metrics
+    cat_features : list
+         List with categorical features.
+    Returns
+    -------
+    None
+    """
+    encoder = joblib.load(input_pth + "/encoder.pkl")
+    lb = joblib.load(input_pth + "/lb.pkl")
+    model = joblib.load(input_pth + "/model.pkl")
     header = ["precision", "recall", "fbeta", "feature", "value"]
 
-    with open("../data/slice_output.txt", 'w') as file:
+    with open(output_pth + "/slice_output.txt", 'w') as file:
         writer = csv.writer(file)
         writer.writerow(header)
 
