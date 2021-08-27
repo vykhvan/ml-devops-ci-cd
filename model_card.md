@@ -15,7 +15,8 @@ income by social data information.
 
 ## Metrics
 * The model was evaluated using Fbeta, precision and recall.
-* Pinned metrics measures for categorical features in dataset
+* Pinned metrics measures for categorical features in dataset.
+* Precision is 0.8, Recall is 0.63, Fbeta is 0.71. 
 
 ## Training Data
 * The data was obtained from the UCI Machine Learning Repository
@@ -26,10 +27,11 @@ income by social data information.
 * Compute model slice performance
 
 ## Quantative Analysis
-<img src="https://github.com/vykhvan/ml-devops-ci-cd/blob/main/quantative-analysis.png" alt="drawing" width="800"/>
+<img src="https://github.com/vykhvan/ml-devops-ci-cd/blob/main/images/quantative-analysis.png" width="800"/>
 
 ## Ethical Considerations
-* Amer-indian Eskimo
+* Race group Amer-indian Eskimo. 
  
 ## Caveats and Recommendations
-* Low perfomance for Amer-indian Eskimo race. New more data for this group.
+* Low perfomance for Amer-indian Eskimo race.
+* Use more data for training. 
