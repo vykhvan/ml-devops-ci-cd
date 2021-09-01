@@ -4,7 +4,7 @@ import pandas as pd
 
 @pytest.fixture(scope="session")
 def data():
-    df = pd.read_csv("~/ml-devops-ci-cd/data/cleaned_data.csv")
+    df = pd.read_csv("data/cleaned_data.csv")
     return df
 
 
