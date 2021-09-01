@@ -5,6 +5,7 @@ import joblib
 import os
 import pytest
 import pandas as pd
+import time
 from src.ml.data import process_data
 from src.ml.model import (
     train_model,
@@ -42,6 +43,7 @@ def test_train_model(make_split):
     model = train_model(X_train, y_train)
     joblib.dump(model, "src/test_ml/model.pkl")
     assert isinstance(model, sklearn.ensemble._gb.GradientBoostingClassifier)
+    time.sleep(5)
 
 
 def test_inference(make_split):
