@@ -17,7 +17,7 @@ from src.ml.model import (
 @pytest.fixture(scope="session")
 def make_dataset():
     data = {"column1": [1, 1, 1, 1, 1, 2, 1],
-            "column2": [0.1, 0.1, 0.5, 0.5, 0.1 , 0.3, 0.1],
+            "column2": [0.1, 0.1, 0.5, 0.5, 0.1, 0.3, 0.1],
             "column3": ["X", "X", "Y", "Y", "X", "X", "Y"],
             "salary": [0, 1, 1, 1, 0, 0, 0]}
     df = pd.DataFrame(data)
